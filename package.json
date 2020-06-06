@@ -16,6 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --colors",
     "eject": "react-scripts eject",
+    "deploy": "npm run build && firebase deploy",
     "prettify": "prettier --config .prettierrc.json --ignore-path .prettierignore --write \"src/**/*.js\"",
     "checkPrettier": "prettier --config .prettierrc.json --ignore-path .prettierignore --check \"src/**/*.js\"",
     "lint": "node_modules/.bin/eslint --color --ext js,jsx ./src",
