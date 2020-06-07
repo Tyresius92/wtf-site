@@ -72,6 +72,8 @@ const App = () => {
 
         <Button
           size="large"
+          variant="contained"
+          color="primary"
           className={classes.nextButton}
           onClick={getAnother}
         >
