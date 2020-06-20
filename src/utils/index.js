@@ -122,23 +122,24 @@ const oneOffActivities = [
 ];
 
 const headers = [
-  'Probably going to fucking',
+  'Probably fucking going to',
   "I'm finally fucking going to",
   "It's definitely fucking time for me to",
+  'I have always fucking wanted to',
+  'When the fuck else would I be able to',
 ];
 
 const actions = [
-  () => getRandomArrayElement(oneOffActivities),
-  () => `buy a fucking ${getRandomArrayElement(stuffToBuy)}`,
-  () => `finally fucking read ${getRandomArrayElement(books)}`,
-  () => `adopt a fucking ${getRandomArrayElement(pets)}`,
-  () => `make a fucking ${getRandomArrayElement(thingsToMake)}`,
-  () => `dye my fucking hair ${getRandomArrayElement(colors)}`,
-  () => `learn to fucking ${getRandomArrayElement(skills)}`,
-  () =>
-    `have a fucking skype call with my fucking ${getRandomArrayElement(
-      relatives
-    )}`,
+  ...oneOffActivities,
+  ...stuffToBuy.map(thing => `buy a fucking ${thing}`),
+  ...books.map(book => `finally fucking read ${book}`),
+  ...pets.map(pet => `adopt a fucking ${pet}`),
+  ...thingsToMake.map(thing => `make a fucking ${thing}`),
+  ...colors.map(color => `dye my fucking hair ${color}`),
+  ...skills.map(skill => `learn to fucking ${skill}`),
+  ...relatives.map(
+    relative => `have a fucking skype call with my fucking ${relative}`
+  ),
 ];
 
 const buttonTextOptions = [
@@ -146,11 +147,15 @@ const buttonTextOptions = [
   'That sounds fucking boring',
   'Fuck that',
   "Fuck off, I'm not doing that",
+  'Fuck no',
+  'The fuck are you on about?',
+  'Fuckity bye on that',
+  'Get the fuck outta here with that',
 ];
 
 const generateHeaderText = () => getRandomArrayElement(headers);
 
-const generateBodyText = () => getRandomArrayElement(actions)();
+const generateBodyText = () => getRandomArrayElement(actions);
 
 const generateButtonText = () => getRandomArrayElement(buttonTextOptions);
 
