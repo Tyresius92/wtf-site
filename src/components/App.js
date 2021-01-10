@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AppBar,
   Button,
@@ -10,6 +10,8 @@ import {
 } from '@material-ui/core';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import utils from '../utils';
+import firebase from 'firebase/app';
+import 'firebase/analytics';
 
 const { generateHeaderText, generateBodyText, generateButtonText } = utils;
 
@@ -42,7 +44,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const firebaseConfig = {
+  apiKey: 'AIzaSyDunRfylaPOA9N2tiboU6qQn2Ub_CvMjMs',
+  authDomain: 'wtf-site-5eff4.firebaseapp.com',
+  databaseURL: 'https://wtf-site-5eff4.firebaseio.com',
+  projectId: 'wtf-site-5eff4',
+  storageBucket: 'wtf-site-5eff4.appspot.com',
+  messagingSenderId: '736600996837',
+  appId: '1:736600996837:web:e704ff32be4aa36b350d0c',
+  measurementId: 'G-LCRXZ6FFGG',
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const analytics = firebase.analytics();
+
 const App = () => {
+  useEffect(() => {
+    analytics.logEvent('page_load');
+  }, []);
   const classes = useStyles();
 
   const [header, setHeader] = useState(generateHeaderText());
@@ -50,6 +69,7 @@ const App = () => {
   const [anotherText, setAnotherText] = useState(generateButtonText());
 
   const getAnother = () => {
+    analytics.logEvent('button_click');
     setHeader(generateHeaderText());
     setBody(generateBodyText());
     setAnotherText(generateButtonText());
@@ -88,6 +108,7 @@ const App = () => {
           <IconButton
             color="inherit"
             href="https://github.com/Tyresius92/wtf-site"
+            onClick={() => analytics.logEvent('github_icon_click')}
           >
             <GitHubIcon color="inherit" />
           </IconButton>
